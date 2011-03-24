@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+""" The graph drawn by this script shows a breakoff in a success metric
+at a bloom-filter k-mer of around k1=6.  Why?
+
+Conclusion:  The overlap term between the two text pieces is 6 characters
+long ('jumped').
+"""
+
 from hash import BloomFilter, retrieve_first_sentence, retrieve_all_sentences
 from itertools import product
 
@@ -26,4 +33,6 @@ for k1, k2 in product(krange, krange):
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 plt.imshow(score_matrix, cmap = cm.gray)
+plt.xlabel('search term length')
+plt.ylabel('bloom filter k-mer')
 plt.show()
